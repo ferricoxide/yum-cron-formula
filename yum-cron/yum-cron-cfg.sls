@@ -218,7 +218,7 @@ file-{{ cfgFile }}-exists:
 
 file-{{ hourlyFile }}-exists:
   file.managed:
-    - name: '{{ cfgFile }}'
+    - name: '{{ hourlyFile }}'
     - backup: True
     - create: False
     - contents: |
