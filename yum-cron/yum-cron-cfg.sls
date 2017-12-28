@@ -299,5 +299,13 @@ file-{{ hourlyFile }}-exists:
     - require:
       - pkg: 'yum-cron'
 
+svc-yum_cron-running:
+  service.running:
+    - name: 'yum-cron'
+    - enable: True
+    - watch:
+      - file: '{{ cfgFile }}'
+      - file: '{{ hourlyFile }}'
+
 {%- endif %}
 
