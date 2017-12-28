@@ -147,6 +147,8 @@ svc-yum_cron-running:
 file-{{ cfgFile }}-exists:
   file.managed:
     - name: '{{ cfgFile }}'
+    - backup: True
+    - create: False
     - contents: |
         [commands]
         #  What kind of update to use:
@@ -211,10 +213,14 @@ file-{{ cfgFile }}-exists:
     - user: 'root'
     - group: 'root'
     - mode: '0644'
+    - require:
+      - pkg: 'yum-cron'
 
 file-{{ hourlyFile }}-exists:
   file.managed:
     - name: '{{ cfgFile }}'
+    - backup: True
+    - create: False
     - contents: |
         [commands]
         #  What kind of update to use:
@@ -290,6 +296,8 @@ file-{{ hourlyFile }}-exists:
     - user: 'root'
     - group: 'root'
     - mode: '0644'
+    - require:
+      - pkg: 'yum-cron'
 
 {%- endif %}
 
